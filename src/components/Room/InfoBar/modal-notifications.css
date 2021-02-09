@@ -1,0 +1,64 @@
+.promptContainer{
+    background-color: white;
+    padding: 10px;
+    overflow-y: scroll;
+    max-height: 90vh;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.exitPromptContainer{
+    display: flex;
+    font-size: 20px;
+}
+.exitPromptMessageContainer{
+    display: inline-block;
+    padding-right: 10px;
+}
+.exitButton{
+    font-size: 20px;
+    margin: 10px;
+    font-family: 'David Libre', serif;    
+    padding: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    color: white;
+}
+.exitYesButton{
+    background-color: #dc3545;
+}
+.exitNoButton{
+    background-color: #28a745;
+}
+
+
+hr{
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.closeConfigContainer{
+    background-color: transparent;
+    font-size: 40px;
+    float: right;
+    cursor: pointer;
+}
+.configRoomIdContainer{
+    font-family: 'David Libre', serif;    
+    font-size: 30px;
+    line-height: 40px;
+}
+.configRoomDetailsContainer, .configRoomParticipantsContainer{
+    font-family: 'David Libre', serif;    
+    font-size: 20px;
+}
+.configRoomParticipantsContainer p{
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+}
+.configOptionsContainer{
+    font-family: 'David Libre', serif;
+    font-size: 20px;
+}
+.configOptionsContainer label{
+    margin: 2px;
+}

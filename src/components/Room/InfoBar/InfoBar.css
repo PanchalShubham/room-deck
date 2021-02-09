@@ -1,0 +1,28 @@
+.infoBarContainer{
+    padding: 10px;
+    font-family: 'David Libre', serif;    
+    font-size: 20px;
+    height: 50px;
+    /* background: #dcf8c6; */
+    background-color: #2979FF;
+}
+.roomNameContainer{
+    line-height: 50px;
+    float: left;
+}
+.closeButtonContainer{
+    line-height: 50px;
+    float: right;
+}
+.closeButtonContainer button, .roomNameContainer button{
+    font-family: 'David Libre', serif;    
+    font-size: 40px;
+    color: white;
+    padding: 0;
+    margin: 5px;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+

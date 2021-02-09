@@ -1,0 +1,68 @@
+.chat-input{
+    // background-color: #f0f0f0;
+    border-top: 1px solid #2979ff;
+    .fields{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        #chat-input{
+            flex: 1;
+            margin: 5px;
+            border: 1px solid black;
+            border-radius: 10px;
+            padding: 10px;
+            background-color: white;
+            word-break: break-all;
+        }
+        button{
+            font-size: 25px;
+            background: transparent;
+            border: none;
+            outline: none;
+            margin: 5px;
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+        }
+        .attachmentButtons{
+            position: absolute;
+            bottom: 70px;
+            left: 85px;
+            z-index: 2;
+            button{
+                background-color: black;
+                color: white;
+                font-size: 25px;
+                padding: 5px;
+                width: 50px;
+                height: 50px;
+                border-radius: 50%;
+                display: block;
+                margin: 20px auto;
+            }
+            .fileButton{
+                background: #ff9966;
+                background: -webkit-linear-gradient(to right, #ff5e62, #ff9966);
+                background: linear-gradient(to right, #ff5e62, #ff9966);
+            }
+            .videoButton{
+                background: #654ea3;
+                background: -webkit-linear-gradient(to right, #eaafc8, #654ea3);
+                background: linear-gradient(to right, #eaafc8, #654ea3);                                                
+            }
+            .audioButton{
+                background: #bc4e9c;
+                background: -webkit-linear-gradient(to right, #f80759, #bc4e9c);
+                background: linear-gradient(to right, #f80759, #bc4e9c);                
+            }
+            .imageButton{
+                background: #ad5389;
+                background: -webkit-linear-gradient(to right, #ad5389, #3c1053);
+                background: linear-gradient(to right, #ad5389, #3c1053);
+            }
+        }
+    }
+    .emoji-picker-react{
+        width: 100% !important;
+    }
+}

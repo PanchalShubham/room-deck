@@ -1,0 +1,49 @@
+.left{
+    text-align: left;
+}
+.right{
+    text-align: right;
+}
+.center{
+    text-align: center;
+}
+
+.individualMessage {
+    padding: 10px; 
+    display: inline-block;  
+    word-wrap: break-word !important;
+    white-space: pre-wrap !important;
+    margin: 5px;
+    text-align: left;
+}
+
+.individualMessageAuthor{
+    font-weight: bold;
+    color: #e542a3;
+}
+.individualMessageTimeStamp{
+    text-align: right;
+}
+
+.adminMessage{
+    border-radius: 20px;
+    background-color: #2979FF;
+    color: white;
+}
+
+.sentMessage{
+    background-color: #dcf8c6;
+    border-radius: 20px 0px 20px 20px;
+    white-space: pre-wrap;
+}
+.clientMessage{
+    background-color: white;
+    border-radius: 0px 20px 20px 20px;
+    white-space: pre-wrap;
+}
+
+.attachment{
+    max-width: 100%;
+    overflow: hidden;
+    cursor: pointer;
+}

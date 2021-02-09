@@ -1,0 +1,38 @@
+.roomOuterContainer{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    width: 95vw;
+    height: 95vh;
+    display: flex;
+    flex-direction: column;
+    .infoBarContainer{
+        padding: 10px;
+        font-family: 'David Libre', serif;    
+        font-size: 20px;
+        background-color: #2979FF;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        button{
+            font-family: 'David Libre', serif;    
+            font-size: 40px;
+            color: white;
+            padding: 0;
+            margin: 5px;
+            background-color: transparent;
+            border: none;
+            outline: none;
+            cursor: pointer;            
+        }
+        .roomNameContainer{
+            overflow: hidden;
+            button{
+                overflow: hidden;
+            }
+        }
+    }
+    .messagesOuterContainer{
+        flex: 1;
+        padding: 10px;
+        overflow-y: scroll;
+    }
+}

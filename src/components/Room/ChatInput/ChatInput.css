@@ -1,0 +1,94 @@
+@import url('https://fonts.googleapis.com/css2?family=David+Libre&display=swap');
+
+.emojiPickerContainer section{
+    margin: 10px auto;
+    width: 100% !important;
+}
+.emojiPickerContainer span, .emojiPickerContainer ul{
+    text-align: left !important;
+    color: black !important;
+}
+.emoji-mart-bar{
+    display: none !important;
+}
+.emoji-mart-emoji{
+    outline: none;
+    border: none;
+}
+.chatInputOuterContainer{
+    padding: 20px;
+    background-color: #f3f3f3;
+    border-top: 1px solid #2979ff;
+    margin: 0 !important;
+}
+.chatInputPlaceholder{
+    color: #919191;
+}
+.chatInputInnerContainer{
+    display: flex;
+    align-items: center;
+    position: relative;
+    width: 100%;
+}
+.chatInputTextAreaContainer{
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: auto;
+    vertical-align: baseline;
+    width: inherit;
+    background-color: white;
+    padding: 10px;
+    padding-right: 5px;
+    border-radius: 20px;
+    overflow-x: scroll;
+}
+.chatInputTextArea{
+    font-family: 'David Libre', serif;
+    font-size: 20px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    position: relative;
+    white-space: pre-wrap;
+    width: 100%;
+    user-select: text;
+    min-height: 50px;
+    max-height: 50vh;
+    align-items:left;
+    text-align: left !important;
+}
+
+.chatInputOptionsContainer{
+    min-height: 50px;
+    max-height: 50px;
+    line-height: 50px;
+    position: relative;
+    display: block;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+.chatInputOptionsContainer button{
+    font-size: 30px;
+    background-color: transparent;
+    line-height: 50px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    color: #919191;
+}
+
+
+
+/* scroll-bar styles */
+::-webkit-scrollbar {
+    width: 12px;
+} 
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3) !important; 
+    box-shadow: black !important;
+    border-radius: 10px;
+}
+::-webkit-scrollbar-thumb {
+    -webkit-box-shadow: inset 0 0 3px rgba(0,0,0,0.5) !important; 
+    /* box-shadow: transparent !important; */
+    border-radius: 10px;
+}

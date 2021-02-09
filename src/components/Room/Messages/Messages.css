@@ -1,0 +1,16 @@
+.messagesOuterContainer{
+    padding: 20px;
+    padding-bottom: 0;
+    background-color: #f3f3f3;
+    height: 50% !important;   
+    flex: 1;
+}
+.messagesOuterContainer > div{
+    height: 100% !important;
+}
+
+.imageAttachment{
+    max-width: 100%;
+    overflow: hidden;
+    cursor: pointer;
+}
