@@ -3,7 +3,7 @@ import '../styles/Message.scss';
 import {MESSAGE_TYPE} from '../utility/DataAccessObject';
 import DownloadIcon from '../assets/download.png';
 const messageToComponent = (message) => {
-    let {type, content, caption} = message;
+    let {type, content, caption, filename} = message;
     if (type === MESSAGE_TYPE.TEXT)    return content;
     if (type === MESSAGE_TYPE.IMAGE) {
         return (
@@ -32,8 +32,9 @@ const messageToComponent = (message) => {
     if (type === MESSAGE_TYPE.FILE) {
         return (
             <div>
-                <a href="" className="fileAttachment" >
-                    <img src={DownloadIcon}/> hello.txt</a>
+                <a href={content} className="fileAttachment" 
+                    download={filename}>
+                    <img src={DownloadIcon} alt=""/> {filename}</a>
             </div>
         );
     }
@@ -41,8 +42,20 @@ const messageToComponent = (message) => {
 };
 export default function Message(props){
     let {message} = props;
+    let {admin} = message;
     let socketId = 1;
     let amIAuthor = (message.socketId === socketId);
+    if (admin) {
+        return (
+            <div className="message-container">
+                <div className="adminMessageContainer">
+                    <div className="adminMessage">
+                        {message.content}
+                    </div>
+                </div>
+            </div>
+        );
+    }
     return (
         <div className={`message-container ${amIAuthor ? 'self-message' : 'other-message'}`}>
             <div className="message">

@@ -1,11 +1,11 @@
 #toasted-notes{
     position: absolute;
-    z-index: 101;
-    right: 0px;
+    z-index: -1;
     top: 0px;
-    padding: 10px;
-    height: 250px;
-    overflow: scroll;
+    border: 1px solid red;
+    height: 95vh;
+    width: 95vw;
+    overflow: hidden;
     .toast{
         display: flex;
         width: 400px !important;

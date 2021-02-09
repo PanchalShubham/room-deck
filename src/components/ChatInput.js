@@ -6,6 +6,9 @@ import '../styles/ChatInput.scss';
 import ChatContext from '../context/ChatContext';
 import {addToast} from '../utility/ToastedNotes';
 import {showModal, closeModal} from '../utility/Modal';
+import DownloadIcon from '../assets/download.png';
+
+// functional component
 export default function ChatInput(props){    
     const {
         sendMessage,
@@ -45,7 +48,10 @@ export default function ChatInput(props){
     const prepareMessage = (type, content, filename) => {
         let item = null;
         if (type === MESSAGE_TYPE.FILE){
-
+            item = <a href={content} className="fileAttachment" 
+                        download={filename}>
+                        <img src={DownloadIcon} alt=""/> {filename}
+                    </a>
         } else if (type === MESSAGE_TYPE.IMAGE) {
             item = <img src={content} alt="" />
         } else if (type === MESSAGE_TYPE.AUDIO) {
@@ -62,9 +68,8 @@ export default function ChatInput(props){
                     <button onClick={()=> {
                         closeModal();
                         sendMessage(type, content, caption, filename);
-                        setShowAttachment(false);
                     }}>
-                        <FontAwesomeIcon icon={faPaperPlane} />
+                        <FontAwesomeIcon icon={faPaperPlane} /> Send
                     </button>
                 </div>
             </div>
@@ -86,6 +91,7 @@ export default function ChatInput(props){
                 let _size = file.size;
                 if (_size > MESSAGE_TYPE.MAX_FILE_SIZE) 
                     return addToast(`Max. file size size is ${MESSAGE_TYPE.MAX_FILE_SIZE_STRING}`, {appearance: 'error'});
+                setShowAttachment(false);
                 let reader = new FileReader();
                 reader.onload = (event) => {
                     let {result} = event.target;

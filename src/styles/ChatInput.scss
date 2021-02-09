@@ -1,6 +1,6 @@
 .chat-input{
     // background-color: #f0f0f0;
-    border-top: 1px solid #2979ff;
+    // border-top: 1px solid #2979ff;
     .fields{
         display: flex;
         align-items: center;
@@ -29,6 +29,7 @@
             bottom: 70px;
             left: 85px;
             z-index: 2;
+            transition: 5s;
             button{
                 background-color: black;
                 color: white;

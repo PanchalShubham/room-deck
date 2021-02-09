@@ -1,4 +1,9 @@
 .app{
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow-x: hidden;
     .loadingMessage{
         font-size: 20px;
         color: white;

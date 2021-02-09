@@ -69,6 +69,17 @@
                 }
             }
         }
+        .adminMessageContainer{
+            text-align: center;
+            .adminMessage{
+                background-color: #2979FF;
+                color: white;
+                padding: 5px;
+                display: inline-block;
+                border-radius: 10px;
+                margin: 10px auto;
+            }
+        }
     }
     .self-message{
         text-align: right;

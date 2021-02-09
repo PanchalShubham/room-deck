@@ -19,15 +19,18 @@ const flagInfo = (message, autoDismiss = false) => addToast(message, {appearance
 
 // functional component to be rendered
 const App = (props)=>{
-	const [room, setRoom] = useState({
-		participants: [],
-		roomId: 'abcdefghij'
-	});
+	// const [room, setRoom] = useState({
+	// 	participants: [],
+	// 	roomId: 'abcdefghij'
+	// });
+	const [room, setRoom] = useState(null);
 	const [messageList, setMessageList] = useState([
         {id: 1, content: 'this is a busy day!', socketId: 1,
             type: MESSAGE_TYPE.TEXT, username: 'shubham'},
         {id: 2, content: 'hi this is a busy day!', socketId: 2,
-            type: MESSAGE_TYPE.TEXT, username: 'hello'}
+			type: MESSAGE_TYPE.TEXT, username: 'hello'},
+		{id: 2, content: 'admin message!', socketId: 2,
+            type: MESSAGE_TYPE.TEXT, username: 'hello', admin: true}			
     ]);
 
 	const [loadingMessage, setLoadingMessage] = useState(null);
@@ -51,11 +54,10 @@ const App = (props)=>{
 		list.push(item);
 		setMessageList(list);
 
-		// get the container and scroll it to bottom
-		let div = document.getElementById(`messagesContainer`);
-		if (!div)   return;
-		div.scrollTop = div.scrollHeight;
-
+		// // get the container and scroll it to bottom
+		// let div = document.getElementById(`messagesContainer`);
+		// if (!div)   return;
+		// div.scrollTop = div.scrollHeight;
 	};
 
 

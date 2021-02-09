@@ -1,14 +1,27 @@
-import React, { useContext} from 'react';
+import React, { useContext, useEffect, useRef} from 'react';
 import ChatInput from './ChatInput';
 import '../styles/Room.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faTimes, faEllipsisH} from '@fortawesome/free-solid-svg-icons';
 import ChatContext from '../context/ChatContext';
 import Message from './Message';
-
+import {addToast} from '../utility/ToastedNotes';
 
 // define the functional component
 const Room = (props)=>{
+    // used to scroll to bottom once updated!
+    const mounted = useRef();
+    useEffect(()=>{
+        if (!mounted.current) {
+            mounted.current = true;
+        } else {
+            // get the container and scroll it to bottom
+            let div = document.getElementById(`messagesContainer`);
+            if (!div)   return;
+            div.scrollTop = div.scrollHeight;            
+        }
+    });
+
     // get the properties in the context
     const {
         room, 
@@ -80,7 +93,7 @@ const Room = (props)=>{
 
     // prompts the user for exit operation
     const promptExit = () => {
-
+        addToast('hello world', {appearance: 'none'});
     };
     // displays more details about the meeting
     const showMeetingDetails = () => {
