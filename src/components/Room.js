@@ -2,10 +2,10 @@ import React, { useContext, useEffect, useRef} from 'react';
 import ChatInput from './ChatInput';
 import '../styles/Room.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {faTimes, faEllipsisH} from '@fortawesome/free-solid-svg-icons';
+import {faTimes, faEllipsisH, faCheck} from '@fortawesome/free-solid-svg-icons';
 import ChatContext from '../context/ChatContext';
 import Message from './Message';
-import {addToast} from '../utility/ToastedNotes';
+import { addToast } from '../utility/ToastedNotes';
 
 // define the functional component
 const Room = (props)=>{
@@ -25,7 +25,9 @@ const Room = (props)=>{
     // get the properties in the context
     const {
         room, 
-        messageList
+        messageList,
+        socketId,
+        exitFromRoom,
     } = useContext(ChatContext);
 
     // use local-storage to keep track of visibility
@@ -93,7 +95,23 @@ const Room = (props)=>{
 
     // prompts the user for exit operation
     const promptExit = () => {
-        addToast('hello world', {appearance: 'none'});
+        let amIOwner = (socketId === room.adminSocketId);
+        let item = (
+            <div className="confirmation-dialog">
+                <div>Are you sure want to exit?</div>
+                {amIOwner && 
+                <div>
+                    You are the owner of this room 
+                    if you leave then everybody will be disconnected!
+                </div>}
+                <div className="confirmation-button">
+                    <button><FontAwesomeIcon icon={faCheck} /></button>
+                    <button><FontAwesomeIcon icon={faTimes} /></button>
+                </div>
+            </div>
+        );
+        let toastId = addToast(item, {appearance: 'none', position: 'center'});
+        // exitFromRoom();
     };
     // displays more details about the meeting
     const showMeetingDetails = () => {
@@ -105,25 +123,27 @@ const Room = (props)=>{
     // render the component
     return (
         <div className="roomOuterContainer">
-            <div className="infoBarContainer">
-                <div className="roomNameContainer">
-                    <button>
-                        <strong>Room Id: </strong>{room.roomId}
-                    </button>
+            <div className="roomInnerContainer">
+                <div className="infoBarContainer">
+                    <div className="roomNameContainer">
+                        <button>
+                            <strong>Room Id: </strong>{room.roomId}
+                        </button>
+                    </div>
+                    <div className="infoBarOperations">
+                        <button onClick={showMeetingDetails}><FontAwesomeIcon icon={faEllipsisH} /></button>
+                        <button onClick={promptExit}><FontAwesomeIcon icon={faTimes} /></button>
+                    </div>
                 </div>
-                <div className="infoBarOperations">
-                    <button onClick={showMeetingDetails}><FontAwesomeIcon icon={faEllipsisH} /></button>
-                    <button onClick={promptExit}><FontAwesomeIcon icon={faTimes} /></button>
+
+                <div className="messagesOuterContainer" id="messagesContainer">
+                    {messageList.map(message => (
+                            <Message message={message} key={message.id}/>
+                    ))}
                 </div>
-            </div>
 
-            <div className="messagesOuterContainer" id="messagesContainer">
-                {messageList.map(message => (
-                        <Message message={message} key={message.id}/>
-                ))}
+                <ChatInput />
             </div>
-
-            <ChatInput />
         </div>
     );
 };

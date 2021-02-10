@@ -31,12 +31,18 @@ export default function ChatInput(props){
         setText(event.target.innerText);
         focusInput();
     };
+    const prepareAndSendMessage = (content, type, filename = null, caption = null) => {
+		// prepare the message
+        let item = {content, type, caption, filename};
+        // send the message
+        sendMessage(item);
+    };
     const dispatchMessage = () => {
-        let userText = text;
-        if (userText.trim() === '') return;
+        let userText = String(text).trim();
+        if (userText === '') return;
         setShowEmojiPicker(false);
         setText('');
-        sendMessage(MESSAGE_TYPE.TEXT, userText);
+        prepareAndSendMessage(userText, MESSAGE_TYPE.TEXT);
     };
     const keyDownHandler = (event) => {
         if (event.key === 'Enter') {
@@ -67,7 +73,7 @@ export default function ChatInput(props){
                         value={caption} onChange={event => setCaption(event.target.value)}/>
                     <button onClick={()=> {
                         closeModal();
-                        sendMessage(type, content, caption, filename);
+                        prepareAndSendMessage(content, type, filename, caption);
                     }}>
                         <FontAwesomeIcon icon={faPaperPlane} /> Send
                     </button>

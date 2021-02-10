@@ -8,10 +8,10 @@ export const encryptMessage = (key, messageObject) => {
     return cipherText;
 };
 // performs the decryption on the text
-export const decryptMessage = (key, messageObject)=>{
-    let bytes = CryptoJS.AES.decrypt(JSON.stringify(messageObject), key);
+export const decryptMessage = (key, encryptedString)=>{
+    let bytes = CryptoJS.AES.decrypt(encryptedString, key);
     let text = bytes.toString(CryptoJS.enc.Utf8);
-    return text;
+    return JSON.parse(text);
 };
 
 // constants for message-type
@@ -27,5 +27,20 @@ export const MESSAGE_TYPE = {
 
 // configuration
 export const CONFIG = {
-    ENDPOINT : `http://localhost:8080`
+    ENDPOINT : `http://localhost:8080`,
+    MAX_RECONNECTION_ATTEMPTS : 5,
+    CONNECT : 'connect',
+    IP_ERROR : 'ip-error',
+    CREATE_OR_JOIN : 'create-or-join',
+    CREATE_ROOM_SUCCESS : 'create-room-success',
+    FOUND_RUNNING_ROOM_SESSION : 'found-running-room-session',
+    NO_SUCH_ROOM_ERROR : 'no-such-room-error',
+    JOINED_VIA_ANOTHER_WINDOW : 'joined-via-another-window',
+    JOIN_ROOM_SUCCESS : 'join-room-success',
+    JOINED_ROOM : 'joined-room',
+    LEFT_ROOM : 'left-room',
+    MESSAGE_ALL : 'message-all',
+    EXIT_FROM_ROOM : 'exit-from-room',
+    TERMINATE_ROOM : 'terminate-room',
+    ROOM_TIME_OUT : 'room-time-out',
 };

@@ -1,6 +1,5 @@
 .chat-input{
-    // background-color: #f0f0f0;
-    // border-top: 1px solid #2979ff;
+    margin-bottom: 10px;
     .fields{
         display: flex;
         align-items: center;
@@ -27,7 +26,7 @@
         .attachmentButtons{
             position: absolute;
             bottom: 70px;
-            left: 85px;
+            left: 70px;
             z-index: 2;
             transition: 5s;
             button{
