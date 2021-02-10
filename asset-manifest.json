@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/room-deck/static/css/main.fc98c4cb.chunk.css",
+    "main.js": "/room-deck/static/js/main.7a16685f.chunk.js",
+    "main.js.map": "/room-deck/static/js/main.7a16685f.chunk.js.map",
+    "runtime-main.js": "/room-deck/static/js/runtime-main.a11c14bb.js",
+    "runtime-main.js.map": "/room-deck/static/js/runtime-main.a11c14bb.js.map",
+    "static/js/2.b09a7d08.chunk.js": "/room-deck/static/js/2.b09a7d08.chunk.js",
+    "static/js/2.b09a7d08.chunk.js.map": "/room-deck/static/js/2.b09a7d08.chunk.js.map",
+    "index.html": "/room-deck/index.html",
+    "precache-manifest.108f927ba5e47b7ffb56aab0bbea7239.js": "/room-deck/precache-manifest.108f927ba5e47b7ffb56aab0bbea7239.js",
+    "service-worker.js": "/room-deck/service-worker.js",
+    "static/css/main.fc98c4cb.chunk.css.map": "/room-deck/static/css/main.fc98c4cb.chunk.css.map",
+    "static/js/2.b09a7d08.chunk.js.LICENSE.txt": "/room-deck/static/js/2.b09a7d08.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.a11c14bb.js",
+    "static/js/2.b09a7d08.chunk.js",
+    "static/css/main.fc98c4cb.chunk.css",
+    "static/js/main.7a16685f.chunk.js"
+  ]
+}
