@@ -2,10 +2,12 @@ import React, { useContext, useEffect, useRef} from 'react';
 import ChatInput from './ChatInput';
 import '../styles/Room.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {faTimes, faEllipsisH, faCheck} from '@fortawesome/free-solid-svg-icons';
+import {faTimes, faEllipsisH, faCheck, faUserAlt} from '@fortawesome/free-solid-svg-icons';
 import ChatContext from '../context/ChatContext';
 import Message from './Message';
-import { addToast } from '../utility/ToastedNotes';
+import { addToast, removeToast } from '../utility/ToastedNotes';
+import { v4 as uuidv4 } from 'uuid';
+
 
 // define the functional component
 const Room = (props)=>{
@@ -26,96 +28,63 @@ const Room = (props)=>{
     const {
         room, 
         messageList,
-        socketId,
+        userId,
         exitFromRoom,
     } = useContext(ChatContext);
 
-    // use local-storage to keep track of visibility
-    window.onblur = (event => {
-        localStorage.setItem('windowVisible', 'false');
-    });
-    window.onfocus = (event => {
-        localStorage.setItem('windowVisible', 'true');
-    });
-
-    // // componentDidMount - called exactly once
-    // useEffect(()=>{
-    //     // if (!socket)    return;
-    //     // socket.on('message', message => {            
-    //     //     setMessageList(messageList => [...messageList, message]);
-
-    //     //     // send a notification to user if required
-    //     //     let allowNotifications = (localStorage.getItem('allowNotifications') === 'true');
-
-    //     //     // check if notifications are enabled
-    //     //     if (allowNotifications) {
-    //     //         // check if window is visible
-    //     //         let windowVisible = (localStorage.getItem('windowVisible') === 'true');
-    //     //         // check if notification is to be sent
-    //     //         if (!windowVisible || (windowVisible && document.visibilityState === 'hidden')) {
-    //     //             // add a notification
-    //     //             addNotification({
-    //     //                 title: 'ROOM DECK',
-    //     //                 message: `New message in room with id ${room.roomId}`,
-    //     //                 native: true,
-    //     //                 icon: {icon}
-    //     //             });    
-    //     //         }
-    //     //     }
-    //     // });
-    //     // socket.on('roomDetails', ({room}) => {
-    //     //     setRoom(room);
-    //     // });
-    // }, []);
-
-    // // fires the send message event
-    // const sendMessage = (event)=>{
-    //     // if(event) event.preventDefault();
-    //     // let div = document.getElementById('chatInput');
-    //     // let content = div.innerHTML;
-    //     // if (!content)   return;
-    //     // if (!socket)    return;
-    //     // let encrypted = encryptText(room, content);
-    //     // socket.emit('sendMessage', encrypted, error => {
-    //     //     // if (error) ToasterNotification.notify(false, error)
-    //     // });
-    //     // div.innerHTML = '';
-    // };
-
-    // // fires the send attachment event
-    // const sendAttachment = (attachment) => {
-    //     // if (!socket)    return;
-    //     // let encrypted = encryptText(room, attachment);
-    //     // socket.emit('sendMessage', encrypted, (error, message) => {
-    //     //     // if (error) ToasterNotification.notify(false, message || error);
-    //     // });
-    // };
-
-
-
     // prompts the user for exit operation
     const promptExit = () => {
-        let amIOwner = (socketId === room.adminSocketId);
+        let amIOwner = (userId === room.userId);
+        let toastId = uuidv4();
         let item = (
             <div className="confirmation-dialog">
-                <div>Are you sure want to exit?</div>
+                <div>Are you sure you want to exit?</div>
                 {amIOwner && 
                 <div>
                     You are the owner of this room 
                     if you leave then everybody will be disconnected!
                 </div>}
                 <div className="confirmation-button">
-                    <button><FontAwesomeIcon icon={faCheck} /></button>
-                    <button><FontAwesomeIcon icon={faTimes} /></button>
+                    <button className="danger" onClick={()=>{
+                        // remove the popup
+                        removeToast(toastId);
+                        // exit from room
+                        exitFromRoom();
+                    }}><FontAwesomeIcon icon={faCheck} />Exit</button>
+                    <button className="light" onClick={() => removeToast(toastId)}><FontAwesomeIcon icon={faTimes} />Cancel</button>
                 </div>
             </div>
         );
-        let toastId = addToast(item, {appearance: 'none', position: 'center'});
+        addToast(item, {appearance: 'none', position: 'center', toastId});
         // exitFromRoom();
     };
     // displays more details about the meeting
     const showMeetingDetails = () => {
-
+        let toastId = uuidv4();
+        let item = (
+            <div className="meeting-details">
+                <div className="close-details">
+                    <button onClick={() => removeToast(toastId)}>
+                        <FontAwesomeIcon icon={faTimes} />
+                    </button>
+                </div>
+                <div className="header">
+                    <strong>RoomId: </strong> {room.roomId}
+                </div>
+                <div className="members">
+                    {room.people.map(item => (
+                        <div key={item.id}>
+                            <FontAwesomeIcon icon={faUserAlt} /> 
+                            {item.username} 
+                            {item.id === userId && <span className="you-badge">You</span>} 
+                            {room.userId === item.id && <span className="admin-badge">Admin</span>}<br/>
+                            ({item.id}) 
+                        </div>
+                    ))}
+                </div>
+            </div>
+        );
+        addToast(item, {appearance: 'none', toastId, position: 'center'});
     };
 
 

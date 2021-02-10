@@ -4,6 +4,7 @@
     justify-content: center;
     width: 100vw;
     height: 100vh;
+    $barColor: #1e5162;
     .roomInnerContainer{
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
         width: -webkit-fill-available;
@@ -16,6 +17,7 @@
             font-family: 'David Libre', serif;    
             font-size: 20px;
             background-color: #2979FF;
+            background-color: $barColor;
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -45,10 +47,80 @@
     }
 }
 
+.confirmation-dialog{
+    font-family: 'David Libre', serif;    
+    font-size: 20px;
+    padding: 10px;
+}
 .confirmation-button{
     button{
+        font-family: 'David Libre', serif;    
         background: transparent;
         font-size: 20px;
-        
+        padding: 5px 10px;
+        margin: 10px 10px 0px 0px;
+        border-radius: 5px;
+        color: white;
+        cursor: pointer;
+        svg{
+            margin-right: 5px;
+        }
+    }
+    .light{
+        background-color: #198754;
+    }
+    .danger{
+        background-color: #dc3543
+    }
+}
+
+.meeting-details{
+    padding: 10px;
+    .close-details{
+        text-align: right;
+        button{
+            background: transparent;
+            font-size: 20px;
+            cursor: pointer;
+        }
+    }
+    .header{
+        font-size: 30px;
+        border-bottom: 1px solid black;
+    }
+    .members{
+        div{
+            margin: 10px 0px;
+            font-size: 18px;
+            svg{
+                margin-right: 10px;
+            }
+            .admin-badge{
+                background: #2979ff;
+                color: white;
+                padding: 2px 5px;
+                margin: 0px 5px;
+                border-radius: 5px;
+                font-size: 15px;
+            }
+            .you-badge{
+                background: #198754;
+                color: white;
+                padding: 2px 5px;
+                margin: 0px 5px;
+                border-radius: 5px;
+                font-size: 15px;
+            }
+        }
+    }
+}
+
+.pending-request{
+    font-size: 20px;
+    .request-operations{
+        margin: 10px 0px;
+    }
+    span{
+        font-weight: bold;
     }
 }

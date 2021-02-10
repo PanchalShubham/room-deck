@@ -17,16 +17,19 @@ class ToastedNotesContainer extends React.Component{
     defaultTimeOut = this.props.timeOut || DEFAULT_TIME_OUT;
     // delets the toasts with given id
     deleteToast = (id) => {
-        // get the old toasts
-        let oldToasts = [...this.state.toasts];
-        // find the toast with given index
-        let index = oldToasts.findIndex(toast => toast.id === id);
-        // check if such a toast exist
-        if (index === -1)   return;
-        // delete this toast
-        oldToasts.splice(index, 1);
         // update the toasts
-        this.setState({toasts: oldToasts});
+        this.setState(prevState => {
+            // get the old toasts
+            let oldToasts = [...prevState.toasts];
+            // find the toast with given index
+            let index = oldToasts.findIndex(toast => toast.id === id);
+            // check if such a toast exist
+            if (index === -1)   return;
+            // delete this toast
+            oldToasts.splice(index, 1);
+            // update the toasts
+            return {toasts: oldToasts}
+        });
     };
     // delete all toasts
     deleteAllToasts = () => this.setState({toasts: []});

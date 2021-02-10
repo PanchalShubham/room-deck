@@ -27,9 +27,10 @@ export const MESSAGE_TYPE = {
 
 // configuration
 export const CONFIG = {
-    ENDPOINT : `http://localhost:8080`,
+    ENDPOINT : `https://room-deck-server.herokuapp.com`,
     MAX_RECONNECTION_ATTEMPTS : 5,
     CONNECT : 'connect',
+    CONNECTION_ERROR : 'connect_error',
     IP_ERROR : 'ip-error',
     CREATE_OR_JOIN : 'create-or-join',
     CREATE_ROOM_SUCCESS : 'create-room-success',
@@ -37,6 +38,12 @@ export const CONFIG = {
     NO_SUCH_ROOM_ERROR : 'no-such-room-error',
     JOINED_VIA_ANOTHER_WINDOW : 'joined-via-another-window',
     JOIN_ROOM_SUCCESS : 'join-room-success',
+    JOIN_ROOM_REQUEST : 'join-room-request',
+    WAIT_FOR_APPROVAL : 'wait-for-approval',
+    APPROVE_REQUEST : 'approve-request',
+    REJECT_REQUEST : 'reject-request',
+    REQUEST_TO_JOIN_REJECTED : 'request-to-join-rejected',
+    LET_CLIENT_IN : 'let-client-in',
     JOINED_ROOM : 'joined-room',
     LEFT_ROOM : 'left-room',
     MESSAGE_ALL : 'message-all',

@@ -1,7 +1,8 @@
 import React, { useContext, useState } from 'react';
 import Picker, { SKIN_TONE_LIGHT} from "emoji-picker-react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faFileAlt, faFileAudio, faFileImage, faFileVideo, faPaperclip, faPaperPlane, faSmile, faTimes} from '@fortawesome/free-solid-svg-icons';
+import { faFileAlt, faFileAudio, faFileImage, faFileVideo, 
+        faPaperclip, faPaperPlane, faSmile, faTimes} from '@fortawesome/free-solid-svg-icons';
 import '../styles/ChatInput.scss';
 import ChatContext from '../context/ChatContext';
 import {addToast} from '../utility/ToastedNotes';

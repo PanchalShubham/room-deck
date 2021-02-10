@@ -8,4 +8,19 @@
         font-size: 20px;
         color: white;
     }
+    .success-button, .error-button{
+        font-family: 'David Libre', serif;    
+        color: white;
+        padding: 5px;
+        margin: 0px 5px;
+        border-radius: 5px;
+        font-size: 20px;
+        cursor: pointer;
+    }
+    .success-button{
+        background: #198754;
+    }
+    .error-button{
+        background-color: #dc3543
+    }
 }
