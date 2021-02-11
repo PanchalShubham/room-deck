@@ -17,7 +17,7 @@ import { faTimes, faCheck } from '@fortawesome/free-solid-svg-icons';
 const App = (props)=>{
 	const [socket, setSocket] = useState(null);
 	const [room, setRoom] = useState(null);
-	const [username, setUsername] = useState('shubham-panchal');
+	const [username, setUsername] = useState('');
 	const [roomId, setRoomId] = useState('');
 	const [userId, setUserId] = useState('');
 	const [restrictAccess, setRestrictAccess] = useState(false);
