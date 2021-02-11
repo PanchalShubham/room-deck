@@ -30,11 +30,12 @@ const Room = (props)=>{
         messageList,
         userId,
         exitFromRoom,
+        toastList, setToastList,
     } = useContext(ChatContext);
 
     // prompts the user for exit operation
     const promptExit = () => {
-        let amIOwner = (userId === room.userId);
+        let amIOwner = (userId === room.adminId);
         let toastId = uuidv4();
         let item = (
             <div className="confirmation-dialog">
@@ -56,7 +57,7 @@ const Room = (props)=>{
             </div>
         );
         addToast(item, {appearance: 'none', position: 'center', toastId});
-        // exitFromRoom();
+        setToastList([...toastList, toastId]);
     };
     // displays more details about the meeting
     const showMeetingDetails = () => {
@@ -73,18 +74,19 @@ const Room = (props)=>{
                 </div>
                 <div className="members">
                     {room.people.map(item => (
-                        <div key={item.id}>
+                        <div key={item.userId}>
                             <FontAwesomeIcon icon={faUserAlt} /> 
                             {item.username} 
-                            {item.id === userId && <span className="you-badge">You</span>} 
-                            {room.userId === item.id && <span className="admin-badge">Admin</span>}<br/>
-                            ({item.id}) 
+                            {item.userId === userId && <span className="you-badge">You</span>} 
+                            {item.userId === room.adminId && <span className="admin-badge">Admin</span>}<br/>
+                            ({item.userId}) 
                         </div>
                     ))}
                 </div>
             </div>
         );
         addToast(item, {appearance: 'none', toastId, position: 'center'});
+        setToastList([...toastList, toastId]);
     };
 
 

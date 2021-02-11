@@ -109,12 +109,19 @@ const App = (props)=>{
 		socket.on(CONFIG.CONNECT, () => {
 			// reset the connection error count
 			setConnectionErrorCount(0);
+			// check if room already exist
+			if (room)	return socket.emit(CONFIG.RE_JOIN, roomId, userId, username);
 			// create a temporary id
 			let tempId = uuidv4();
 			// update the user id
 			setUserId(tempId);
 			// emit the create or join room event
 			socket.emit(CONFIG.CREATE_OR_JOIN, roomId, tempId, username, restrictAccess);
+		});
+		// on disconnection notify
+		socket.on(CONFIG.DISCONNECT, () => {
+			// update the error message
+			setLoadingMessage(`Hold on! I'm trying to you back.`);
 		});
 		// on connection error
 		socket.on(CONFIG.CONNECTION_ERROR, () => {
@@ -297,8 +304,9 @@ const App = (props)=>{
 						room, sendMessage,
 						MESSAGE_TYPE,
 						messageList, setMessageList,
+						toastList, setToastList,
 						exitFromRoom,
-						userId
+						userId,
 					}}>
 					{itemToDisplay}
 				</ChatContext.Provider>
