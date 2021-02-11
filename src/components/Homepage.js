@@ -37,7 +37,7 @@ export default function Homepage(props) {
                 <div className="brand">
                     <h1>ROOM DECK</h1>
                     <p>
-                        Create an instant room and start chatting with team or friends. <br/>
+                        Create an instant room and start chatting with friends, family or community. <br/>
                         A completely free service available 24x7 with no registrations!
                     </p>
                 </div>

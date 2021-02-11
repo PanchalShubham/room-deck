@@ -17,13 +17,13 @@ import { faTimes, faCheck } from '@fortawesome/free-solid-svg-icons';
 const App = (props)=>{
 	const [socket, setSocket] = useState(null);
 	const [room, setRoom] = useState(null);
-	const [username, setUsername] = useState('');
+	const [username, setUsername] = useState('shubham-panchal');
 	const [roomId, setRoomId] = useState('');
 	const [userId, setUserId] = useState('');
 	const [restrictAccess, setRestrictAccess] = useState(false);
 	const [messageList, setMessageList] = useState([]);
 	const [toastList, setToastList] = useState([]);
-	const [loadingMessage, setLoadingMessage] = useState(null);
+	const [loadingMessage, setLoadingMessage] = useState('');
 	const [connectionErrorCount, setConnectionErrorCount] = useState(0);
 
 	// flags an error message

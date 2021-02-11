@@ -1,17 +1,14 @@
 .roomOuterContainer{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100vw;
-    height: 100vh;
     $barColor: #1e5162;
     .roomInnerContainer{
-        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-        width: -webkit-fill-available;
-        height: -webkit-fill-available;
-        margin: 20px;
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        bottom: 20px;
+        left: 20px;
         display: flex;
         flex-direction: column;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
         .infoBarContainer{
             padding: 10px;
             font-family: 'David Libre', serif;    
@@ -89,6 +86,8 @@
         border-bottom: 1px solid black;
     }
     .members{
+        max-height: 70vh;
+        overflow: scroll;
         div{
             margin: 10px 0px;
             font-size: 18px;
@@ -113,6 +112,9 @@
             }
         }
     }
+    .members::-webkit-scrollbar{
+        display: none;
+    }    
 }
 
 .pending-request{

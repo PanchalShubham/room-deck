@@ -1,22 +1,26 @@
 #overlay{
-    position: absolute;
+    position: fixed;
     top: 0px;
+    right: 0px;
     left: 0px;
+    bottom: 0px;
     z-index: 101;
     background-color: transparent;
     overflow: hidden;
-    width: -webkit-fill-available;
-    height: -webkit-fill-available;
     display: flex;
     align-items: center;
     justify-content: center;
     -webkit-user-select: none;
+    padding: 10px;
     > div{
         position: absolute;
     }
     .background{
-        width: 100vw;
-        height: 100vh;
+        position: fixed;
+        top: 0px;
+        right: 0px;
+        left: 0px;
+        bottom: 0px;
         overflow: hidden;
         opacity: 0.7;
         background-color: #696969;

@@ -27,6 +27,7 @@ export const MESSAGE_TYPE = {
 
 // configuration
 export const CONFIG = {
+    // ENDPOINT : `http://localhost:8080/`,
     ENDPOINT : `https://room-deck-server.herokuapp.com`,
     MAX_RECONNECTION_ATTEMPTS : 5,
     CONNECT : 'connect',

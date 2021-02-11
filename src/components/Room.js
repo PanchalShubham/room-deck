@@ -95,7 +95,12 @@ const Room = (props)=>{
             <div className="roomInnerContainer">
                 <div className="infoBarContainer">
                     <div className="roomNameContainer">
-                        <button>
+                        <button onClick={() => {
+                            if (!navigator.clipboard)   return;
+                            navigator.clipboard.writeText(room.roomId).then(() => {
+                                addToast(`RoomId copied!`, {appearance: 'info', autoDismiss: true, timeOut: 2000})
+                            })
+                        }}>
                             <strong>Room Id: </strong>{room.roomId}
                         </button>
                     </div>

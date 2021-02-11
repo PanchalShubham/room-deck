@@ -2,6 +2,10 @@ import React from 'react';
 import '../styles/Message.scss';
 import {MESSAGE_TYPE} from '../utility/DataAccessObject';
 import DownloadIcon from '../assets/download.png';
+import AudioPlayer from 'react-h5-audio-player';
+import 'react-h5-audio-player/lib/styles.css';
+
+
 const messageToComponent = (message) => {
     let {type, content, filename, caption} = message;
     if (type === MESSAGE_TYPE.TEXT)    return content;
@@ -9,7 +13,7 @@ const messageToComponent = (message) => {
         return (
             <div>
                 <img src={content} alt="" />
-                {caption}
+                <div>{caption}</div>                
             </div>
         );
     }
@@ -17,15 +21,15 @@ const messageToComponent = (message) => {
         return (
             <div>
                 <video controls src={content} />
-                {caption}
+                <div>{caption}</div>                
             </div>
         );
     }
     if (type === MESSAGE_TYPE.AUDIO) {
         return (
             <div>
-                <audio controls src={content} />
-                {caption}
+                <AudioPlayer controls src={content} />
+                <div>{caption}</div>                
             </div>
         );
     }
@@ -34,7 +38,9 @@ const messageToComponent = (message) => {
             <div>
                 <a href={content} className="fileAttachment" 
                     download={filename}>
-                    <img src={DownloadIcon} alt=""/> {filename}</a>
+                    <img src={DownloadIcon} alt=""/> {filename}
+                </a>
+                <div>{caption}</div>                
             </div>
         );
     }

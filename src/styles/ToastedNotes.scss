@@ -3,11 +3,11 @@
     top: 0px;
     width: -webkit-fill-available;
     height: -webkit-fill-available;
-    overflow: hidden;
     .toasted-notes-container{
         position: absolute;
         display: flex;
         flex-direction: column;   
+        z-index: 101;
     }
     .top-left{
         top: 0px;
@@ -42,13 +42,11 @@
     }
     .toast{
         display: inline-flex;
-        width: 400px !important;
         background: white;
+        min-width: 250px;
         box-shadow: 0 3px 8px #ededed;
         border-radius: 4px;
         margin-bottom: 8px;
-        right: 0px;
-        z-index: 101;
         color: #505F79;
          > div{
              padding: 10px 5px;

@@ -5,14 +5,15 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        #chat-input{
+        .chatInputContainer{
             flex: 1;
-            margin: 5px;
-            // border: 1px solid black;
-            border-radius: 10px;
-            padding: 10px;
-            background-color: white;
-            word-break: break-all;
+            #chat-input{
+                margin: 5px;
+                border-radius: 10px;
+                padding: 10px;
+                background-color: white;
+                word-break: break-all;
+            }
         }
         button{
             font-size: 25px;
@@ -27,8 +28,7 @@
         }
         .attachmentButtons{
             position: absolute;
-            bottom: 80px;
-            left: 80px;
+            bottom: 60px;
             z-index: 2;
             button{
                 background-color: black;
