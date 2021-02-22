@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import '../styles/Message.scss';
-import {MESSAGE_TYPE} from '../utility/DataAccessObject';
 import DownloadIcon from '../assets/download.png';
 import AudioPlayer from 'react-h5-audio-player';
 import 'react-h5-audio-player/lib/styles.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {faChevronDown, faChevronUp} from '@fortawesome/free-solid-svg-icons';
+import * as MESSAGE_TYPE from '../utility/MessageType';
+import ChatContext from '../context/ChatContext';
 
 
 const messageToComponent = (message) => {
@@ -49,11 +52,15 @@ const messageToComponent = (message) => {
 
 // actual functional component
 export default function Message(props){
-    let {message} = props;
-    let {admin, amIAuthor} = message;
+    let {setTaggedMessage, deleteMessageById} = useContext(ChatContext);
+    let {message} = props;    
+    let {admin, amIAuthor, taggedMessage} = message;
+    const [xDown, setXDown] = useState(null);
+    const [yDown, setYDown] = useState(null);
+    const [showMenu, setShowMenu] = useState(false);
     if (admin) {
         return (
-            <div className="message-container">
+            <div className="message-container" id={message.id}>
                 <div className="adminMessageContainer">
                     <div className="adminMessage">
                         {message.content}
@@ -62,8 +69,34 @@ export default function Message(props){
             </div>
         );
     }
+
+    const handleTouchStart = (event) => {
+        setXDown(event.touches[0].clientX);
+        setYDown(event.touches[0].clientY);
+    };
+    const handleTouchMove = (event) => {
+        let xUp = event.touches[0].clientX;
+        let yUp = event.touches[0].clientY;
+        let xDiff = xDown - xUp;
+        let yDiff = yDown - yUp;
+        if (Math.abs(xDiff) > Math.abs(yDiff)) {
+            if (xDiff > 0) {
+                // swipped left!
+            }
+        }
+        setXDown(null);
+        setYDown(null);
+    };
+
+    let classList = ['message-container'];
+    classList.push(amIAuthor ? 'self-message' : 'other-message');
     return (
-        <div className={`message-container ${amIAuthor ? 'self-message' : 'other-message'}`}>
+        <div
+            onClick={()=> setTaggedMessage(message)}
+            onTouchStart={handleTouchStart}
+            onTouchMove={handleTouchMove}
+            id={message.id} 
+            className={classList.join(' ')}>
             <div className="message">
                 <div className={`arrow-container ${amIAuthor ? 'right-align' : 'left-align'}`}> 
                     {amIAuthor ? 
@@ -73,9 +106,38 @@ export default function Message(props){
                 </div>
                 <div className={`message-body ${amIAuthor ? 'self' : 'other'}`}>
                     <div className="author">
-                        {message.username}
-                        <span>{message.timeStamp}</span>
+                        <div>
+                            {message.username}
+                            <span>{message.timeStamp}</span>
+                        </div>
+                        <div className="messageOperation">
+                            <button onClick={(event) => {
+                                event.stopPropagation();
+                                setShowMenu(!showMenu);
+                            }}>
+                                <FontAwesomeIcon icon={showMenu ? faChevronUp: faChevronDown} />
+                            </button>
+                            {showMenu && 
+                            <div className="messageMenu"
+                                onClick={(event) => {event.stopPropagation()}}>
+                                <div onClick={() => setTaggedMessage(message)}>Reply</div>
+                                <div onClick={() => deleteMessageById(message.id)}>Delete</div>
+                            </div>}
+                        </div>                        
                     </div>
+                    {taggedMessage && 
+                    <div 
+                        className="taggedMessage"
+                        onClick={(event)=> {
+                            event.stopPropagation();
+                            let item = document.getElementById(taggedMessage.id);
+                            if (item)   item.scrollIntoView();
+                        }}>
+                        <div className="messageBody">
+                            <div className="author">{taggedMessage.username}</div>
+                            <div>{taggedMessage.caption || taggedMessage.content}</div>
+                        </div>
+                    </div>}
                     {messageToComponent(message)}
                 </div>
             </div>

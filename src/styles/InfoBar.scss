@@ -1,0 +1,126 @@
+.infoBarContainer{
+    $barColor: #1e5162;
+    padding: 10px;
+    font-family: 'David Libre', serif;    
+    font-size: 20px;
+    background-color: #2979FF;
+    background-color: $barColor;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    button{
+        font-family: 'David Libre', serif;    
+        font-size: 40px;
+        color: white;
+        padding: 0;
+        margin: 5px;
+        background-color: transparent;
+        border: none;
+        outline: none;
+        cursor: pointer;            
+    }
+    .roomNameContainer{
+        overflow: hidden;
+        button{
+            overflow: hidden;
+        }
+    }
+}
+
+
+
+.confirmation-dialog{
+    font-family: 'David Libre', serif;    
+    font-size: 20px;
+    padding: 10px;
+}
+.confirmation-button{
+    button{
+        font-family: 'David Libre', serif;    
+        background: transparent;
+        font-size: 20px;
+        padding: 5px 10px;
+        margin: 10px 10px 0px 0px;
+        border-radius: 5px;
+        color: white;
+        cursor: pointer;
+        svg{
+            margin-right: 5px;
+        }
+    }
+    .light{
+        background-color: #198754;
+    }
+    .danger{
+        background-color: #dc3543
+    }
+}
+
+.meeting-details{
+    padding: 10px;
+    .close-details{
+        text-align: right;
+        button{
+            background: transparent;
+            font-size: 20px;
+            cursor: pointer;
+        }
+    }
+    .header{
+        font-size: 30px;
+        border-bottom: 1px solid black;
+    }
+    .meeting-configuration{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        button, select, .info{
+            font-size: 15px;
+            font-family: 'David Libre', serif;    
+            padding: 5px;
+            margin: 5px;
+            margin-left: 0px;
+            border-radius: 5px;
+            text-align: center;
+        }
+        > button{
+            background: #dc3545;
+            color: white;
+            cursor: pointer;
+        }
+        .info{
+            color: white;
+            background: #6c757d;
+        }
+    }
+    .members{
+        max-height: 70vh;
+        overflow: scroll;
+        div{
+            margin: 10px 0px;
+            font-size: 18px;
+            svg{
+                margin-right: 10px;
+            }
+            .admin-badge{
+                background: #2979ff;
+                color: white;
+                padding: 2px 5px;
+                margin: 0px 5px;
+                border-radius: 5px;
+                font-size: 15px;
+            }
+            .you-badge{
+                background: #198754;
+                color: white;
+                padding: 2px 5px;
+                margin: 0px 5px;
+                border-radius: 5px;
+                font-size: 15px;
+            }
+        }
+    }
+    .members::-webkit-scrollbar{
+        display: none;
+    }    
+}

@@ -4,6 +4,9 @@
     $msgBorderWidth: 15px;
     $topOptionColor: #00796b;
     .message-container{
+        .translate-left{
+            left: -10px;
+        }
         .message{
             margin: 5px;
             color: black;
@@ -15,10 +18,35 @@
             .author{
                 font-weight: bold;
                 margin-bottom: 5px;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
                 span{
                     margin-left: 5px;
                     font-size: 12px;
                     font-weight: normal;
+                }
+                .messageOperation{
+                    position: relative;
+                    display: inline-block;
+                    > button{
+                        background: transparent;
+                        cursor: pointer;
+                        font-size: 15px;
+                    }
+                }
+                .messageMenu{
+                    background: white;
+                    font-size: 15px;
+                    padding: 5px;
+                    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+                    position: absolute;
+                    width: 50px;
+                    z-index: 2;
+                    > div{
+                        cursor: pointer;
+                        margin: 5px 0px;
+                    }
                 }
             }
             .arrow-container{
@@ -27,6 +55,7 @@
                 margin-top: -2*$msgBorderWidth;
                 display: flex;
                 align-items: center;
+                z-index: -1;
                 .arrow{
                     right: 0px;
                     width: 0px;
@@ -49,7 +78,8 @@
             .message-body{
                 padding: 10px;
                 img, video{
-                    max-height: 450px;
+                    max-width: 100%;
+                    // max-height: 450px;
                 }
                 .fileAttachment{
                     background-color: white;
@@ -105,5 +135,12 @@
     }
     .align-right{
         text-align: right;
+    }
+    .taggedMessage{
+        box-shadow: none;
+        padding-left: 0px;
+        .messageBody{
+            max-width: 70vw;
+        }
     }
 }

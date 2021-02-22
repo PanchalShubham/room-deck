@@ -1,6 +1,7 @@
 .chat-input{
     padding: 10px;
     background: lightblue;
+    background: #1e5162;
     .fields{
         display: flex;
         align-items: center;
@@ -12,7 +13,7 @@
                 border-radius: 10px;
                 padding: 10px;
                 background-color: white;
-                word-break: break-all;
+                // word-break: break-all;
             }
         }
         button{

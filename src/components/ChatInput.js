@@ -7,19 +7,21 @@ import '../styles/ChatInput.scss';
 import ChatContext from '../context/ChatContext';
 import {addToast} from '../utility/ToastedNotes';
 import {showModal, closeModal} from '../utility/Modal';
-import DownloadIcon from '../assets/download.png';
-import AudioPlayer from 'react-h5-audio-player';
-import 'react-h5-audio-player/lib/styles.css';
+import Attachment from './Attachment';
 
 // functional component
 export default function ChatInput(props){    
     const {
         sendMessage,
+        sendFileInChunks,
         MESSAGE_TYPE,
+        setLoadingMessage,
     } = useContext(ChatContext);
     const [text, setText] = useState('');
     const [showEmojiPicker, setShowEmojiPicker] = useState(false);
     const [showAttachment, setShowAttachment] = useState(false);
+
+    // utility functions
     const onEmojiClick = (event, emojiObject) => {
         setText(text + emojiObject.emoji);
         focusInput();
@@ -34,18 +36,13 @@ export default function ChatInput(props){
         setText(event.target.innerText);
         focusInput();
     };
-    const prepareAndSendMessage = (content, type, filename = null, caption = null) => {
-		// prepare the message
-        let item = {content, type, filename, caption};
-        // send the message
-        sendMessage(item);
-    };
     const dispatchMessage = () => {
         let userText = String(text).trim();
         if (userText === '') return;
         setShowEmojiPicker(false);
         setText('');
-        prepareAndSendMessage(userText, MESSAGE_TYPE.TEXT);
+        // send the message
+        sendMessage({content: userText, type: MESSAGE_TYPE.TEXT});
     };
     const keyDownHandler = (event) => {
         if (event.key === 'Enter') {
@@ -54,23 +51,10 @@ export default function ChatInput(props){
         }
     };
 
-    const prepareMessage = (type, content, filename) => {
-        let item = null;
-        if (type === MESSAGE_TYPE.FILE){
-            item = <a href={content} className="fileAttachment" 
-                        download={filename}>
-                        <img src={DownloadIcon} alt=""/> {filename}
-                    </a>
-        } else if (type === MESSAGE_TYPE.IMAGE) {
-            item = <img src={content} alt="" />
-        } else if (type === MESSAGE_TYPE.AUDIO) {
-            item = <AudioPlayer controls src={content} />
-        } else if (type === MESSAGE_TYPE.VIDEO) {
-            item = <video controls src={content} />
-        }
+    const previewAttachment = (type, content, file) => {
         return (
-            <div>
-                {item}
+            <div className="attachment-preview-container">
+                <Attachment type={type} content={content} file={file} />
                 <div className="caption">
                     <input type="text" id="caption" autoComplete="off"
                         placeholder="Type a caption..." onKeyDown={event => {
@@ -80,12 +64,13 @@ export default function ChatInput(props){
                                 if (button) button.click();
                             }                    
                         }} />
-                    <button id="sendAttachment" onClick={()=> {
+                    <button id="sendAttachment" onClick={() => {
                         closeModal();
                         let captionInput = document.getElementById('caption');
                         let caption = null;
                         if (captionInput)   caption = captionInput.value;
-                        prepareAndSendMessage(content, type, filename, caption);
+                        sendFileInChunks(type, content, file.name, caption);
+                        // setTimeout(sendFileInChunks, 1000, type, file, caption);
                     }}>
                         <FontAwesomeIcon icon={faPaperPlane} /> Send
                     </button>
@@ -103,21 +88,34 @@ export default function ChatInput(props){
         else if (type === MESSAGE_TYPE.IMAGE) accept = "image/*";
         input.setAttribute('type', 'file');
         if (accept) input.setAttribute('accept', accept);
+        // add change listener to input
         input.addEventListener('change', () => {
+            // check if input files are provided
             if (input.files && input.files.length === 1) {
+                // make checks on file size
                 let file = input.files[0];
                 let _size = file.size;
-                if (_size > MESSAGE_TYPE.MAX_FILE_SIZE) 
-                    return addToast(`Max. file size size is ${MESSAGE_TYPE.MAX_FILE_SIZE_STRING}`, {appearance: 'error'});
                 setShowAttachment(false);
+                if (_size > MESSAGE_TYPE.MAX_FILE_SIZE)
+                    return addToast(`Max. file size size is ${MESSAGE_TYPE.MAX_FILE_SIZE_STRING}`, {appearance: 'error'});
                 let reader = new FileReader();
+                // when file is loaded process the content
                 reader.onload = (event) => {
                     let {result} = event.target;
-                    let itemToDisplay = prepareMessage(type, result, file.name);
+                    let itemToDisplay = previewAttachment(type, result, file);
                     showModal(itemToDisplay);
                     let captionInput = document.getElementById('caption');
                     if (captionInput)   captionInput.focus();
+                    setLoadingMessage(``);
                 };
+                // as file reading progress - inform the user
+                reader.onprogress = (data) => {
+                    if (data.lengthComputable) {
+                        let progress = parseInt(((data.loaded / data.total) * 100), 10);
+                        setLoadingMessage(`Please wait! I'm uploading your file (${progress}%)`)
+                    }
+                }
+                // read the file for preview
                 reader.readAsDataURL(file);
             }
         });
@@ -128,7 +126,10 @@ export default function ChatInput(props){
     return (
         <div className="chat-input">
             <div className="fields">
-                <button onClick={() => setShowEmojiPicker(!showEmojiPicker)}>
+                <button onClick={() => {
+                    setShowAttachment(false);
+                    setShowEmojiPicker(!showEmojiPicker);                    
+                }}>
                     <FontAwesomeIcon icon={showEmojiPicker ? faTimes : faSmile} />
                 </button>
                 <div>
@@ -147,7 +148,10 @@ export default function ChatInput(props){
                             <FontAwesomeIcon icon={faFileImage} />
                         </button>
                     </div>}
-                    <button onClick={() => setShowAttachment(!showAttachment)}>
+                    <button onClick={() => {
+                        setShowEmojiPicker(false);
+                        setShowAttachment(!showAttachment);
+                    }}>
                         <FontAwesomeIcon icon={showAttachment ? faTimes : faPaperclip} />
                     </button>
                 </div>
