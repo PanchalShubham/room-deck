@@ -20,7 +20,7 @@ import {encryptMessage, decryptMessage} from './utility/Cryptography';
 const App = (props)=>{
 	const [socket, setSocket] = useState(null);
 	const [room, setRoom] = useState(null);
-	const [username, setUsername] = useState('shubham-panchal');
+	const [username, setUsername] = useState('');
 	const [roomId, setRoomId] = useState('');
 	const [userId, setUserId] = useState('');
 	const [restrictAccess, setRestrictAccess] = useState(false);

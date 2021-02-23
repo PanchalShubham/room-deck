@@ -29,6 +29,7 @@
                 .messageOperation{
                     position: relative;
                     display: inline-block;
+                    opacity: 0;
                     > button{
                         background: transparent;
                         cursor: pointer;
@@ -102,6 +103,11 @@
                     border-radius: 10px;
                     min-width: 300px;
                 }
+            }
+        }
+        .message:hover{
+            .messageOperation{
+                opacity: 1;
             }
         }
         .adminMessageContainer{
