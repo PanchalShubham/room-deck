@@ -1,25 +1,25 @@
 {
   "files": {
-    "main.css": "/room-deck/static/css/main.016b4983.chunk.css",
-    "main.js": "/room-deck/static/js/main.c1cd0894.chunk.js",
-    "main.js.map": "/room-deck/static/js/main.c1cd0894.chunk.js.map",
+    "main.css": "/room-deck/static/css/main.20c17e72.chunk.css",
+    "main.js": "/room-deck/static/js/main.3a6d6664.chunk.js",
+    "main.js.map": "/room-deck/static/js/main.3a6d6664.chunk.js.map",
     "runtime-main.js": "/room-deck/static/js/runtime-main.a11c14bb.js",
     "runtime-main.js.map": "/room-deck/static/js/runtime-main.a11c14bb.js.map",
     "static/css/2.01b90c39.chunk.css": "/room-deck/static/css/2.01b90c39.chunk.css",
     "static/js/2.b4c7b6e5.chunk.js": "/room-deck/static/js/2.b4c7b6e5.chunk.js",
     "static/js/2.b4c7b6e5.chunk.js.map": "/room-deck/static/js/2.b4c7b6e5.chunk.js.map",
     "index.html": "/room-deck/index.html",
-    "precache-manifest.f1099b4b14f69c3d8f50bfc6442cfb0f.js": "/room-deck/precache-manifest.f1099b4b14f69c3d8f50bfc6442cfb0f.js",
+    "precache-manifest.1da8d7cfb1d200370ccd564f5b5d6bd0.js": "/room-deck/precache-manifest.1da8d7cfb1d200370ccd564f5b5d6bd0.js",
     "service-worker.js": "/room-deck/service-worker.js",
     "static/css/2.01b90c39.chunk.css.map": "/room-deck/static/css/2.01b90c39.chunk.css.map",
-    "static/css/main.016b4983.chunk.css.map": "/room-deck/static/css/main.016b4983.chunk.css.map",
+    "static/css/main.20c17e72.chunk.css.map": "/room-deck/static/css/main.20c17e72.chunk.css.map",
     "static/js/2.b4c7b6e5.chunk.js.LICENSE.txt": "/room-deck/static/js/2.b4c7b6e5.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.a11c14bb.js",
     "static/css/2.01b90c39.chunk.css",
     "static/js/2.b4c7b6e5.chunk.js",
-    "static/css/main.016b4983.chunk.css",
-    "static/js/main.c1cd0894.chunk.js"
+    "static/css/main.20c17e72.chunk.css",
+    "static/js/main.3a6d6664.chunk.js"
   ]
 }
